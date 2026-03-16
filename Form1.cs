@@ -17,7 +17,13 @@ namespace BrionesKent2A
             InitializeComponent();
         }
 
-        
+        string[,] userCredentials =
+        {
+            { "Admin", "Cashier" },
+            { "admin", "password" },
+            { "Kent Briones", "Romelis Pineda" },
+            { "Admin Department", "Staff Department" }
+        };
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -31,9 +37,27 @@ namespace BrionesKent2A
                 MessageBox.Show("Please enter password.", "Password Required.");
                 tbPassword.Focus();
             }
-            else
+            else 
             {
-                MessageBox.Show("Welcome " + tbUsername.Text);
+               for (int x = 0; x < userCredentials.Length; x++)
+                {
+                    if (userCredentials[0, x] == tbUsername.Text)
+                    {
+                        if (userCredentials[1, x] == tbPassword.Text)
+                        {
+                            MessageBox.Show("Welcome " + userCredentials[2, x] + " from " + userCredentials[3, x]);
+                            frmHome frm = new frmHome();
+                            this.Hide();
+                            frm.Show();
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username/password");
+                        break;
+                    }
+                }
             }
         }
     }
