@@ -50,6 +50,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmUsers";
             this.Text = "Users";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUsersCLosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

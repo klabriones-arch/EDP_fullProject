@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace BrionesKent2A
 {
@@ -16,7 +18,7 @@ namespace BrionesKent2A
         {
             InitializeComponent();
         }
-
+        MyDatabase db = new MyDatabase();
         string[,] userCredentials =
         {
             { "Admin", "Cashier" },
@@ -37,29 +39,39 @@ namespace BrionesKent2A
                 MessageBox.Show("Please enter password.", "Password Required.");
                 tbPassword.Focus();
             }
-            else 
+            else
             {
-               for (int x = 0; x < userCredentials.Length; x++)
+                string query = "SELECT * FROM tbllogincredentials WHERE user_username = @username and user_password = @password;";
+                DataTable dt = db.ExecuteReturnQuery(query,
+                    new MySqlParameter("@username", tbUsername.Text),
+                    new MySqlParameter("@password", tbPassword.Text));
+
+                if (dt.Rows.Count == 1)
                 {
-                    if (userCredentials[0, x] == tbUsername.Text)
-                    {
-                        if (userCredentials[1, x] == tbPassword.Text)
-                        {
-                            MessageBox.Show("Welcome " + userCredentials[2, x] + " from " + userCredentials[3, x]);
-                            frmHome frm = new frmHome();
-                            this.Hide();
-                            frm.Show();
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid username/password");
-                        break;
-                    }
+                    frmHome frm = new frmHome();
+                    this.Hide();
+                    frm.Show();
+
                 }
+
+
             }
         }
+
+
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            if (db.TestConnection())
+            {
+                MessageBox.Show("Connected to Database");
+            }
+            else
+            {
+                MessageBox.Show("Cannot Connected to Database");
+            }
+        }
+
     }
 }
 

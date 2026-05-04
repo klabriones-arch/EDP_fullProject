@@ -50,6 +50,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmPricebook";
             this.Text = "Pricebook";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPricebookClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

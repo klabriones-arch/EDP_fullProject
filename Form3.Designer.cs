@@ -50,6 +50,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmStoreStatus";
             this.Text = "Store Status";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmStoreStatusClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

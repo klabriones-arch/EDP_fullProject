@@ -16,5 +16,11 @@ namespace BrionesKent2A
         {
             InitializeComponent();
         }
+
+        private void frmPricebookClosing(object sender, FormClosingEventArgs e)
+        {
+            frmHome home = new frmHome();
+            home.Show();
+        }
     }
 }

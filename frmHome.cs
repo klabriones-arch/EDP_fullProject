@@ -20,6 +20,7 @@ namespace BrionesKent2A
         private void btnRegister_Click(object sender, EventArgs e)
         {
             frmRegister nextForm = new frmRegister();
+            this.Hide();
             nextForm.Show();
         }
 
@@ -33,30 +34,35 @@ namespace BrionesKent2A
         private void btnStoreStatus_Click(object sender, EventArgs e)
         {
             frmStoreStatus nextForm = new frmStoreStatus();
+            this.Hide();
             nextForm.Show();
         }
 
         private void btnPricebook_Click(object sender, EventArgs e)
         {
             frmPricebook nextForm = new frmPricebook();
+            this.Hide();
             nextForm.Show();
         }
 
         private void btnVendors_Click(object sender, EventArgs e)
         {
             frmVendors nextForm = new frmVendors();
+            this.Hide();
             nextForm.Show();
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
             frmUsers nextForm = new frmUsers();
+            this.Hide();
             nextForm.Show();
         }
 
         private void btnTimeClock_Click(object sender, EventArgs e)
         {
             frmTimeClock nextForm = new frmTimeClock();
+            this.Hide();
             nextForm.Show();
         }
     }
