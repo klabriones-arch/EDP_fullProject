@@ -41,24 +41,23 @@ namespace BrionesKent2A
             }
             else
             {
-                string query = "SELECT * FROM tbllogincredentials WHERE user_username = @username and user_password = @password;";
+                string query = "SELECT * FROM tbllogincredentials WHERE user_username = @username and user_password = @password AND is_active = 1;";
                 DataTable dt = db.ExecuteReturnQuery(query,
                     new MySqlParameter("@username", tbUsername.Text),
                     new MySqlParameter("@password", tbPassword.Text));
 
-                if (dt.Rows.Count == 1)
+                if (dt.Rows.Count > 0)
                 {
                     frmHome frm = new frmHome();
                     this.Hide();
                     frm.Show();
-
                 }
-
-
+                else
+                {
+                    MessageBox.Show("Invalid credentials or account is deactivated.", "Login Failed");
+                }
             }
         }
-
-
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
